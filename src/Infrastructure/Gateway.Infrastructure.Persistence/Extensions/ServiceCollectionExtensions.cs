@@ -1,7 +1,7 @@
-using Itmo.Dev.Platform.Persistence.Abstractions.Extensions;
-using Itmo.Dev.Platform.Persistence.Postgres.Extensions;
 using Gateway.Application.Abstractions.Persistence;
 using Gateway.Infrastructure.Persistence.Plugins;
+using Itmo.Dev.Platform.Persistence.Abstractions.Extensions;
+using Itmo.Dev.Platform.Persistence.Postgres.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Gateway.Infrastructure.Persistence.Extensions;

@@ -1,13 +1,13 @@
 #pragma warning disable CA1506
 
-using Itmo.Dev.Platform.Common.Extensions;
-using Itmo.Dev.Platform.Observability;
-using Itmo.Dev.Platform.Events;
 using Gateway.Application.Extensions;
 using Gateway.Infrastructure.Persistence.Extensions;
-using Gateway.Presentation.Http.Extensions;
 using Gateway.Presentation.Grpc.Extensions;
+using Gateway.Presentation.Http.Extensions;
 using Gateway.Presentation.Kafka.Extensions;
+using Itmo.Dev.Platform.Common.Extensions;
+using Itmo.Dev.Platform.Events;
+using Itmo.Dev.Platform.Observability;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
@@ -31,7 +31,6 @@ builder.Services
     .AddPresentationHttp();
 
 builder.Services.AddSwaggerGen().AddEndpointsApiExplorer();
-
 
 builder.Services.AddPlatformEvents(b => b.AddPresentationKafkaHandlers());
 

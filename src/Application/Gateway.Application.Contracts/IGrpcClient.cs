@@ -1,3 +1,5 @@
+using Users.UsersService.Contracts;
+
 namespace Gateway.Application.Contracts;
 
 public interface IGrpcClient

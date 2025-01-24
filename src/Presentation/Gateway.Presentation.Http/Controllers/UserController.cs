@@ -1,5 +1,6 @@
 using Gateway.Application.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using Users.UsersService.Contracts;
 
 namespace Gateway.Presentation.Http.Controllers;
 
@@ -31,6 +32,6 @@ public class UserController : ControllerBase
     {
         // TODO. Retuern User instead of id?
         CreateUserResponse response = await _client.CreateUserAsync(userDto, cancellationToken: cancellationToken);
-        return response;
+        return Ok(response);
     }
 }
