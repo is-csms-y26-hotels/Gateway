@@ -1,7 +1,8 @@
 #pragma warning disable CA1506
 
+using Gateway.Application;
+using Gateway.Application.Contracts;
 using Gateway.Application.Extensions;
-using Gateway.Infrastructure.Persistence.Extensions;
 using Gateway.Presentation.Grpc.Extensions;
 using Gateway.Presentation.Http.Extensions;
 using Gateway.Presentation.Kafka.Extensions;
@@ -13,6 +14,10 @@ using Newtonsoft.Json;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddOptions<GrpcClientOptions>().BindConfiguration("GrpcClient");
+builder.Services.AddGrpcClients();
+builder.Services.AddScoped<IGrpcClient, GrpcClient>();
+
 builder.Configuration.AddUserSecrets<Program>();
 
 builder.Services.AddOptions<JsonSerializerSettings>();
@@ -22,7 +27,6 @@ builder.Services.AddPlatform();
 builder.AddPlatformObservability();
 
 builder.Services.AddApplication();
-builder.Services.AddInfrastructurePersistence();
 builder.Services.AddPresentationGrpc();
 builder.Services.AddPresentationKafka(builder.Configuration);
 builder.Services
@@ -44,7 +48,6 @@ app.UseSwaggerUI();
 
 app.UsePlatformObservability();
 
-app.UsePresentationGrpc();
 app.MapControllers();
 
 await app.RunAsync();
