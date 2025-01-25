@@ -26,10 +26,10 @@ public class GrpcClient : IGrpcClient
             LastName = dto.LastName,
             Email = dto.Email,
             Password = dto.Password,
-            Birthdate = Timestamp.FromDateTime(dto.Birthdate),
+            Birthdate = Timestamp.FromDateTime(dto.Birthdate.ToUniversalTime()),
             Sex = SexEnumMapper.ToProto(dto.Sex),
             Tel = dto.Tel,
-            CreatedAt = Timestamp.FromDateTime(dto.CreatedAt),
+            CreatedAt = Timestamp.FromDateTime(dto.CreatedAt.ToUniversalTime()),
         };
 
         CreateUserResponse response = await _client.CreateAsync(request, cancellationToken: cancellationToken);
