@@ -25,7 +25,7 @@ message CreateUserRequest {
   string password = 5;
   google.protobuf.Timestamp birthdate = 6;
   Sex sex = 7;
-  string tel = 8;
+  google.protobuf.StringValue tel = 8;
   google.protobuf.Timestamp createdAt = 9;
 }
 
