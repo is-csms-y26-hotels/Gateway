@@ -5,7 +5,6 @@ using Users.UsersService.Contracts;
 
 namespace Gateway.Application;
 
-// TODO. Register in DI
 public class GrpcClient : IGrpcClient
 {
     private readonly Users.UsersService.Contracts.UsersService.UsersServiceClient _client;

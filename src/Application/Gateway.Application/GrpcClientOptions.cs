@@ -1,4 +1,4 @@
-namespace Gateway.Application.Contracts;
+namespace Gateway.Application;
 
 public class GrpcClientOptions
 {
