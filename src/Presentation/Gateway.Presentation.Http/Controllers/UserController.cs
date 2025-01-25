@@ -1,4 +1,5 @@
 using Gateway.Application.Contracts;
+using Gateway.Application.Contracts.GrpcClients;
 using Microsoft.AspNetCore.Mvc;
 using Users.UsersService.Contracts;
 
@@ -8,9 +9,9 @@ namespace Gateway.Presentation.Http.Controllers;
 [Route("api/users")]
 public class UserController : ControllerBase
 {
-    private readonly IGrpcClient _client;
+    private readonly IGrpcUserClient _client;
 
-    public UserController(IGrpcClient client)
+    public UserController(IGrpcUserClient client)
     {
         _client = client;
     }

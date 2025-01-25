@@ -1,8 +1,8 @@
 using Users.UsersService.Contracts;
 
-namespace Gateway.Application.Contracts;
+namespace Gateway.Application.Contracts.GrpcClients;
 
-public interface IGrpcClient
+public interface IGrpcUserClient
 {
     public Task<CreateUserResponse> CreateUserAsync(
         UserDto dto,

@@ -1,15 +1,16 @@
 using Gateway.Application.Contracts;
+using Gateway.Application.Contracts.GrpcClients;
 using Gateway.Application.Utilities;
 using Google.Protobuf.WellKnownTypes;
 using Users.UsersService.Contracts;
 
-namespace Gateway.Application;
+namespace Gateway.Application.GrpcClients;
 
-public class GrpcClient : IGrpcClient
+public class GrpcUserClient : IGrpcUserClient
 {
     private readonly Users.UsersService.Contracts.UsersService.UsersServiceClient _client;
 
-    public GrpcClient(UsersService.UsersServiceClient client)
+    public GrpcUserClient(UsersService.UsersServiceClient client)
     {
         _client = client;
     }

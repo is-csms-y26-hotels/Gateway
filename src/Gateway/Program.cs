@@ -1,8 +1,7 @@
 #pragma warning disable CA1506
 
-using Gateway.Application;
-using Gateway.Application.Contracts;
 using Gateway.Application.Extensions;
+using Gateway.Application.Options;
 using Gateway.Presentation.Http.Extensions;
 using Itmo.Dev.Platform.Common.Extensions;
 using Itmo.Dev.Platform.Observability;
@@ -11,7 +10,7 @@ using Newtonsoft.Json;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddOptions<GrpcClientOptions>().BindConfiguration("GrpcClient");
+builder.Services.AddOptions<GrpcServerOptions>().BindConfiguration("GrpcServer");
 
 builder.Configuration.AddUserSecrets<Program>();
 
