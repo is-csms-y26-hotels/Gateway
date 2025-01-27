@@ -49,4 +49,15 @@ public static class ServiceCollectionExtensions
         collection.AddScoped<IGrpcBookingClient, GrpcBookingClient>();
         return collection;
     }
+
+    public static IServiceCollection AddInterceptor(this IServiceCollection collection)
+    {
+        collection.AddGrpc(options =>
+        {
+            options.EnableDetailedErrors = true;
+            options.Interceptors.Add<ErrorHandlingInterceptor>();
+        });
+
+        return collection;
+    }
 }

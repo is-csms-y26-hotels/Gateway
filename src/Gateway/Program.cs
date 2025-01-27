@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOptions<GrpcServerOptions>().BindConfiguration("GrpcServer");
+builder.Services.AddInterceptor();
 
 builder.Configuration.AddUserSecrets<Program>();
 
