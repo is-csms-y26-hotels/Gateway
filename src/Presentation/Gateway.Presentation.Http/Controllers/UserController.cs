@@ -24,7 +24,7 @@ public class UserController : ControllerBase
     /// <response code="400">If the input is invalid.</response>
     /// <response code="500">If an unexpected error occurs.</response>
     [HttpPost("register")]
-    [ProducesResponseType(typeof(UserDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(long), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<UserDto>> RegisterUserAsync(
