@@ -1,10 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <ItemGroup>
-        <ProjectReference Include="..\Gateway.Application.Models\Gateway.Application.Models.csproj"/>
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="Google.Api.CommonProtos" />
       <PackageReference Include="Itmo.Dev.Platform.Events" />
     </ItemGroup>
