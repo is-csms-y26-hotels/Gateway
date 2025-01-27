@@ -13,7 +13,6 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOptions<GrpcServerOptions>().BindConfiguration("GrpcServer");
 
-builder.Services.AddInterceptor();
 builder.Services.AddScoped<ExceptionFormattingMiddleware>();
 
 builder.Configuration.AddUserSecrets<Program>();

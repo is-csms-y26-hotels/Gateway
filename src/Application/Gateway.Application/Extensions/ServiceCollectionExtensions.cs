@@ -17,7 +17,7 @@ public static class ServiceCollectionExtensions
             if (grpcServerOptions.UserService is null)
                 throw new NullReferenceException("Options object for GrpcUserClient is null");
             options.Address = new Uri(grpcServerOptions.UserService.BaseAddress);
-        });
+        }).AddInterceptor<ErrorHandlingInterceptor>();
 
         collection.AddGrpcClient<HotelService.HotelServiceClient>((services, options) =>
         {
@@ -25,7 +25,7 @@ public static class ServiceCollectionExtensions
             if (grpcServerOptions.AccommodationService is null)
                 throw new NullReferenceException("Options object for GrpcHotelClient is null");
             options.Address = new Uri(grpcServerOptions.AccommodationService.BaseAddress);
-        });
+        }).AddInterceptor<ErrorHandlingInterceptor>();
 
         collection.AddGrpcClient<RoomService.RoomServiceClient>((services, options) =>
         {
@@ -33,7 +33,7 @@ public static class ServiceCollectionExtensions
             if (grpcServerOptions.AccommodationService is null)
                 throw new NullReferenceException("Options object for GrpcRoomClient is null");
             options.Address = new Uri(grpcServerOptions.AccommodationService.BaseAddress);
-        });
+        }).AddInterceptor<ErrorHandlingInterceptor>();
 
         collection.AddGrpcClient<Bookings.BookingsService.Contracts.BookingService.BookingServiceClient>((services, options) =>
         {
@@ -41,23 +41,12 @@ public static class ServiceCollectionExtensions
             if (grpcServerOptions.BookingService is null)
                 throw new NullReferenceException("Options object for GrpcBookingClient is null");
             options.Address = new Uri(grpcServerOptions.BookingService.BaseAddress);
-        });
+        }).AddInterceptor<ErrorHandlingInterceptor>();
 
         collection.AddScoped<IGrpcUserClient, GrpcUserClient>();
         collection.AddScoped<IGrpcHotelClient, GrpcHotelClient>();
         collection.AddScoped<IGrpcRoomClient, GrpcRoomClient>();
         collection.AddScoped<IGrpcBookingClient, GrpcBookingClient>();
-        return collection;
-    }
-
-    public static IServiceCollection AddInterceptor(this IServiceCollection collection)
-    {
-        collection.AddGrpc(options =>
-        {
-            options.EnableDetailedErrors = true;
-            options.Interceptors.Add<ErrorHandlingInterceptor>();
-        });
-
         return collection;
     }
 }
