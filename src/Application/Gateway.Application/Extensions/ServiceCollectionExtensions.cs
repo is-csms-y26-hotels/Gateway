@@ -23,7 +23,7 @@ public static class ServiceCollectionExtensions
         {
             GrpcServerOptions grpcServerOptions = services.GetRequiredService<IOptions<GrpcServerOptions>>().Value;
             if (grpcServerOptions.AccommodationService is null)
-                throw new NullReferenceException("Options object for GrpcUserClient is null");
+                throw new NullReferenceException("Options object for GrpcHotelClient is null");
             options.Address = new Uri(grpcServerOptions.AccommodationService.BaseAddress);
         });
 
@@ -31,15 +31,22 @@ public static class ServiceCollectionExtensions
         {
             GrpcServerOptions grpcServerOptions = services.GetRequiredService<IOptions<GrpcServerOptions>>().Value;
             if (grpcServerOptions.AccommodationService is null)
-                throw new NullReferenceException("Options object for GrpcUserClient is null");
+                throw new NullReferenceException("Options object for GrpcRoomClient is null");
             options.Address = new Uri(grpcServerOptions.AccommodationService.BaseAddress);
+        });
+
+        collection.AddGrpcClient<Bookings.BookingsService.Contracts.BookingService.BookingServiceClient>((services, options) =>
+        {
+            GrpcServerOptions grpcServerOptions = services.GetRequiredService<IOptions<GrpcServerOptions>>().Value;
+            if (grpcServerOptions.BookingService is null)
+                throw new NullReferenceException("Options object for GrpcBookingClient is null");
+            options.Address = new Uri(grpcServerOptions.BookingService.BaseAddress);
         });
 
         collection.AddScoped<IGrpcUserClient, GrpcUserClient>();
         collection.AddScoped<IGrpcHotelClient, GrpcHotelClient>();
         collection.AddScoped<IGrpcRoomClient, GrpcRoomClient>();
-
-        // TODO. Add other clients and their options
+        collection.AddScoped<IGrpcBookingClient, GrpcBookingClient>();
         return collection;
     }
 }
