@@ -35,4 +35,19 @@ public class GrpcUserClient : IGrpcUserClient
         CreateUserResponse response = await _client.CreateAsync(request, cancellationToken: cancellationToken);
         return response;
     }
+
+    public async Task<GetUserWithoutConfidentialInfoResponse> GetUserWithoutConfidentialInfoAsync(long id, CancellationToken cancellationToken)
+    {
+        var request = new GetUserWithoutConfidentialInfoRequest
+        {
+            UserId = id,
+        };
+
+        GetUserWithoutConfidentialInfoResponse
+            response = await _client.GetUserWithoutConfidentialInfoAsync(
+                request,
+                cancellationToken: cancellationToken);
+
+        return response;
+    }
 }

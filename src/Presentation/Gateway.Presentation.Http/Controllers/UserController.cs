@@ -35,4 +35,23 @@ public class UserController : ControllerBase
         CreateUserResponse response = await _client.CreateUserAsync(userDto, cancellationToken: cancellationToken);
         return Ok(response);
     }
+
+    /// <summary>
+    /// Gets non-confidential user info.
+    /// </summary>
+    /// <returns>The non-confidential user info.</returns>
+    /// <response code="200">Returns the non-confidential user info.</response>
+    /// <response code="400">If the input is invalid.</response>
+    /// <response code="500">If an unexpected error occurs.</response>
+    [HttpPost("get-non-confidential-info/{id}")]
+    [ProducesResponseType(typeof(GetUserWithoutConfidentialInfoResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<ActionResult<GetUserWithoutConfidentialInfoResponse>> GetUserWithoutConfidentialInfoAsync(
+        [FromQuery] long id,
+        CancellationToken cancellationToken)
+    {
+        GetUserWithoutConfidentialInfoResponse response = await _client.GetUserWithoutConfidentialInfoAsync(id, cancellationToken: cancellationToken);
+        return Ok(response);
+    }
 }
