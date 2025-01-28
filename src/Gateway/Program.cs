@@ -23,6 +23,8 @@ builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<JsonSerialize
 builder.Services.AddPlatform();
 builder.AddPlatformObservability();
 
+builder.Services.AddInterceptors();
+
 builder.Services.AddApplication();
 builder.Services
     .AddControllers()

@@ -9,6 +9,13 @@ namespace Gateway.Application.Extensions;
 
 public static class ServiceCollectionExtensions
 {
+    public static IServiceCollection AddInterceptors(this IServiceCollection collection)
+    {
+        collection.AddTransient<ErrorHandlingInterceptor>();
+
+        return collection;
+    }
+
     public static IServiceCollection AddApplication(this IServiceCollection collection)
     {
         collection.AddGrpcClient<Users.UsersService.Contracts.UsersService.UsersServiceClient>((services, options) =>
