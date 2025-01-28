@@ -1,10 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <ItemGroup>
-        <ProjectReference Include="..\Gateway.Application.Models\Gateway.Application.Models.csproj"/>
-    </ItemGroup>
-
-    <ItemGroup>
+      <PackageReference Include="Google.Api.CommonProtos" />
       <PackageReference Include="Itmo.Dev.Platform.Events" />
     </ItemGroup>
 
@@ -19,7 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Protobuf ProtoRoot="protos" Include="protos\**\*.proto" GrpcServices="Client"/>
+        <Protobuf ProtoRoot="protos" Include="protos\**\*.proto" Exclude="protos\money.proto" GrpcServices="Client"/>
     </ItemGroup>
 
 </Project>

@@ -1,3 +1,4 @@
+using Accommodation.Service.Presentation.Grpc;
 using Gateway.Application.Contracts.GrpcClients;
 using Gateway.Application.GrpcClients;
 using Gateway.Application.Options;
@@ -16,11 +17,36 @@ public static class ServiceCollectionExtensions
             if (grpcServerOptions.UserService is null)
                 throw new NullReferenceException("Options object for GrpcUserClient is null");
             options.Address = new Uri(grpcServerOptions.UserService.BaseAddress);
-        });
+        }).AddInterceptor<ErrorHandlingInterceptor>();
+
+        collection.AddGrpcClient<HotelService.HotelServiceClient>((services, options) =>
+        {
+            GrpcServerOptions grpcServerOptions = services.GetRequiredService<IOptions<GrpcServerOptions>>().Value;
+            if (grpcServerOptions.AccommodationService is null)
+                throw new NullReferenceException("Options object for GrpcHotelClient is null");
+            options.Address = new Uri(grpcServerOptions.AccommodationService.BaseAddress);
+        }).AddInterceptor<ErrorHandlingInterceptor>();
+
+        collection.AddGrpcClient<RoomService.RoomServiceClient>((services, options) =>
+        {
+            GrpcServerOptions grpcServerOptions = services.GetRequiredService<IOptions<GrpcServerOptions>>().Value;
+            if (grpcServerOptions.AccommodationService is null)
+                throw new NullReferenceException("Options object for GrpcRoomClient is null");
+            options.Address = new Uri(grpcServerOptions.AccommodationService.BaseAddress);
+        }).AddInterceptor<ErrorHandlingInterceptor>();
+
+        collection.AddGrpcClient<Bookings.BookingsService.Contracts.BookingService.BookingServiceClient>((services, options) =>
+        {
+            GrpcServerOptions grpcServerOptions = services.GetRequiredService<IOptions<GrpcServerOptions>>().Value;
+            if (grpcServerOptions.BookingService is null)
+                throw new NullReferenceException("Options object for GrpcBookingClient is null");
+            options.Address = new Uri(grpcServerOptions.BookingService.BaseAddress);
+        }).AddInterceptor<ErrorHandlingInterceptor>();
 
         collection.AddScoped<IGrpcUserClient, GrpcUserClient>();
-
-        // TODO. Add other clients and their options
+        collection.AddScoped<IGrpcHotelClient, GrpcHotelClient>();
+        collection.AddScoped<IGrpcRoomClient, GrpcRoomClient>();
+        collection.AddScoped<IGrpcBookingClient, GrpcBookingClient>();
         return collection;
     }
 }

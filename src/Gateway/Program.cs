@@ -1,5 +1,6 @@
 #pragma warning disable CA1506
 
+using Gateway.Application;
 using Gateway.Application.Extensions;
 using Gateway.Application.Options;
 using Gateway.Presentation.Http.Extensions;
@@ -11,6 +12,8 @@ using Newtonsoft.Json;
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOptions<GrpcServerOptions>().BindConfiguration("GrpcServer");
+
+builder.Services.AddScoped<ExceptionFormattingMiddleware>();
 
 builder.Configuration.AddUserSecrets<Program>();
 
@@ -39,5 +42,7 @@ app.UseSwaggerUI();
 app.UsePlatformObservability();
 
 app.MapControllers();
+
+app.UseMiddleware<ExceptionFormattingMiddleware>();
 
 await app.RunAsync();
