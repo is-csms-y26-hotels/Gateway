@@ -32,6 +32,10 @@ builder.Services
     .AddPresentationHttp();
 
 builder.Services.AddSwaggerGen().AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.CustomSchemaIds(type => type.ToString());
+});
 
 builder.Services.AddUtcDateTimeProvider();
 

@@ -1,4 +1,4 @@
-using Gateway.Application.Contracts;
+using Gateway.Application.Contracts.Dto.Users;
 
 namespace Gateway.Application.Utilities;
 

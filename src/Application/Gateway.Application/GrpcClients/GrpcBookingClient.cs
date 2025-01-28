@@ -18,6 +18,7 @@ public class GrpcBookingClient : IGrpcBookingClient
     {
         var request = new CreateBookingRequest
         {
+            UserEmail = dto.UserEmail,
             RoomId = dto.RoomId,
             CheckInDate = Timestamp.FromDateTime(dto.CheckInDate.ToUniversalTime()),
             CheckOutDate = Timestamp.FromDateTime(dto.CheckOutDate.ToUniversalTime()),

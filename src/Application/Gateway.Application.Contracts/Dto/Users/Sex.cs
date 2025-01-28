@@ -1,4 +1,4 @@
-namespace Gateway.Application.Contracts;
+namespace Gateway.Application.Contracts.Dto.Users;
 
 public enum Sex
 {

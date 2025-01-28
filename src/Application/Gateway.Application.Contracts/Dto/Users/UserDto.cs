@@ -1,3 +1,4 @@
+using Gateway.Application.Contracts.Dto.Users;
 using System.Text.Json.Serialization;
 
 namespace Gateway.Application.Contracts;

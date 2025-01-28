@@ -31,7 +31,6 @@ public class UserController : ControllerBase
         [FromBody] UserDto userDto,
         CancellationToken cancellationToken)
     {
-        // TODO. Retuern User instead of id?
         CreateUserResponse response = await _client.CreateUserAsync(userDto, cancellationToken: cancellationToken);
         return Ok(response);
     }
