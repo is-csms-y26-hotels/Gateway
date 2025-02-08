@@ -50,5 +50,8 @@ It routes, orchestrates, and validates requests between users and internal micro
 - **Logging & monitoring** (OpenTracing, Prometheus + Grafana)
 
 ## 👥 Team Members  
-- 🏗 **Isaev Daniil** — Gateway  
+- 🏗 **Isaev Daniil** — UserService, Gateway  
+- 🏨 **Kitaev Bogdan** — AccommodationService  
+- 📅 **Zaguta Nikita** — BookingService, NotificationEnrichmentService  
+- 📢 **Badin Roman** — NotificationService
 
