@@ -7,7 +7,7 @@ It routes, orchestrates, and validates requests between users and internal micro
 ## 🚀 Features  
 - **Routes client requests** to appropriate microservices  
 - **Aggregates and formats responses**  
-- **Handles synchronous (gRPC) interactions
+- **Handles synchronous (gRPC) interactions**
 
 ## 🔗 Service Interactions  
 ### Synchronous (gRPC):  
@@ -31,7 +31,7 @@ It routes, orchestrates, and validates requests between users and internal micro
 3. Calls **BookingService** to check room availability  
 4. Aggregates and returns the response  
 
-### 🏨 **Book a Room (with validation)**  
+### 🏨 **Book a Room**  
 1. Gateway forwards the request to **BookingService**  
 2. BookingService validates hotel & room existence via **AccommodationService**  
 3. If valid, the booking is created  
@@ -48,7 +48,7 @@ It routes, orchestrates, and validates requests between users and internal micro
 - **Rate limiting & request throttling** for API protection  
 - **Load balancing** for high scalability  
 - **Logging & monitoring** (OpenTracing, Prometheus + Grafana)
-- 
+
 ## 👥 Team Members  
 - 🏗 **Isaev Daniil** — Gateway  
 
